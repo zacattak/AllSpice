@@ -1,4 +1,4 @@
-namespace post_it_csharp.Models;
+namespace AllSpice.Models;
 
 public class Recipe
 {
@@ -14,4 +14,6 @@ public class Recipe
     public string Category { get; set; }
 
     public string CreatorId { get; set; }
+
+    public Account Creator { get; set; }
 }

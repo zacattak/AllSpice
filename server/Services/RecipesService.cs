@@ -6,7 +6,7 @@ public class RecipesService
 
     public RecipesService(RecipesRepository repository)
     {
-        _repository = repository
+        _repository = repository;
     }
 
     internal Recipe CreateRecipe(RecipesService recipeData)

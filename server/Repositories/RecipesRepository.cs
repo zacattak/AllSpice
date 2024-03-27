@@ -5,7 +5,7 @@ public class RecipesRepository
     private readonly IDbConnection _db;
     public RecipesRepository(IDbConnection db)
     {
-        _db = db
+        _db = db;
     }
 
     internal Recipe CreateRecipe(Recipe recipeData)
@@ -15,9 +15,18 @@ public class RecipesRepository
         recipes(title, instructions, img, category, creatorId)
         VALUES(@Title, @Instructions, @Img, @Category, @CreatorId);
 
-        SELECT * FROM recipes WHERE id = LAST_INSERT_ID();";
+        SELECT
+        recipe.*,
+        account.*
+        FROM recipes recipe
+        JOIN accounts account ON recipe.creatorId = recipe.id
+        WHERE recipe.id = LAST_INSERT_ID();";
 
-        Recipe recipe = _db.Query<Recipe>(sql, recipeData).FirstOrDefault();
+        Recipe recipe = _db.Query<Recipe, Account, Recipe>(sql, (recipe, account) =>
+    {
+        recipe.Creator = account;
+        return recipe;
+    }, recipeData).FirstOrDefault();
         return recipe;
     }
 }

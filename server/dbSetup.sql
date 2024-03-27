@@ -7,3 +7,8 @@ CREATE TABLE recipes (
 )
 
 DROP TABLE recipes;
+
+SELECT recipe.*, account.*
+FROM
+    recipes recipe
+    JOIN accounts account ON recipe.creatorId = account.id;
