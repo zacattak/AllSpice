@@ -9,7 +9,7 @@ public class RecipesService
         _repository = repository;
     }
 
-    internal Recipe CreateRecipe(RecipesService recipeData)
+    internal Recipe CreateRecipe(Recipe recipeData)
     {
         Recipe recipe = _repository.CreateRecipe(recipeData);
         return recipe;
