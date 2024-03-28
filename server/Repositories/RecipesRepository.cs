@@ -29,4 +29,20 @@ public class RecipesRepository
     }, recipeData).FirstOrDefault();
         return recipe;
     }
+    internal List<Recipe> GetRecipes()
+    {
+        string sql = @"
+    SELECT 
+    recipe.*,
+    account.* 
+    FROM recipes recipe
+    JOIN accounts account ON recipe.creatorId = account.id
+    ;";
+        List<Recipe> recipes = _db.Query<Recipe, Account, Recipe>(sql, (recipe, account) =>
+      {
+          recipe.Creator = account;
+          return recipe;
+      }).ToList();
+        return recipes;
+    }
 }
