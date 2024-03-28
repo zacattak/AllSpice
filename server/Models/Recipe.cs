@@ -13,6 +13,8 @@ public class Recipe
 
     public string Category { get; set; }
 
+    public bool Archived { get; set; }
+
     public string CreatorId { get; set; }
 
     public Account Creator { get; set; }
