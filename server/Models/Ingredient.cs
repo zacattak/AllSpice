@@ -9,4 +9,7 @@ public class Ingredient
     public string Quantity { get; set; }
     public string RecipeId { get; set; }
 
+    public string CreatorId { get; set; }
+    public Account Creator { get; set; }
+
 }
