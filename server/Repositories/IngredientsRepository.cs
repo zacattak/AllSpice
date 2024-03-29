@@ -17,9 +17,9 @@ public class IngredientsRepository
     
     SELECT
     ingredient.*,
-    account.*
+    recipe.*
     FROM ingredients ingredient
-    JOIN accounts account ON ingredient.creatorId = account.id 
+    JOIN recipes recipe ON ingredient.recipeId = recipe.id
     WHERE ingredient.id = LAST_INSERT_ID();";
 
         // Ingredient ingredient = _db.Query<Ingredient, Account, Ingredient>(sql, (ingredient, account) =>
@@ -30,8 +30,11 @@ public class IngredientsRepository
 
         // return ingredient;
 
-        Ingredient ingredient = _db.Query<Ingredient, Account, Ingredient>(sql, _populateCreator, ingredientData).FirstOrDefault();
-
+        Ingredient ingredient = _db.Query<Ingredient, Recipe, Ingredient>(sql, (ingredient, recipe) =>
+        {
+            ingredient.RecipeId = recipe.Id;
+            return ingredient;
+        }, ingredientData).FirstOrDefault();
         return ingredient;
     }
 
@@ -40,20 +43,26 @@ public class IngredientsRepository
         string sql = @"
     SELECT
     ingredient.*,
-    account.*
+    recipe.*
     FROM ingredients ingredient
-    // JOIN accounts account ON ingredient.creatorId = account.id
+    JOIN recipes recipe ON ingredient.recipeId = recipe.id
     WHERE ingredient.recipeId = @recipeId
     ;";
 
-        List<Ingredient> ingredients = _db.Query<Ingredient, Account, Ingredient>(sql, _populateCreator, new { recipeId }).ToList();
+        //     List<Ingredient> ingredients = _db.Query<Ingredient, Recipe, Ingredient>(sql, _populateCreator, new { recipeId }).ToList();
 
-        return ingredients;
-    }
+        //     return ingredients;
+        // }
 
-    private Ingredient _populateCreator(Ingredient ingredient, Account account)
-    {
-        ingredient.Creator = account;
+        // private Ingredient _populateCreator(Ingredient ingredient, Account account)
+        // {
+        //     ingredient.Creator = account;
+        //     return ingredient;
+        // }
+        List<Ingredient> ingredient = _db.Query<Ingredient, Recipe, Ingredient>(sql, (ingredient, recipe) =>
+        {
+            return ingredient;
+        }, new { recipeId }).ToList();
         return ingredient;
     }
 }

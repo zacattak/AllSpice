@@ -10,23 +10,23 @@ public class RecipesService
     }
 
 
-    internal Recipe ArchiveRecipe(int recipeId, string userId)
-    {
-        Recipe recipeToArchive = GetRecipeById(recipeId);
+    // internal Recipe ArchiveRecipe(int recipeId, string userId)
+    // {
+    //     Recipe recipeToArchive = GetRecipeById(recipeId);
 
 
-        if (recipeToArchive.CreatorId != userId)
-        {
-            throw new Exception("NOT YOUR ALBUM");
-        }
+    //     if (recipeToArchive.CreatorId != userId)
+    //     {
+    //         throw new Exception("NOT YOUR ALBUM");
+    //     }
 
-        recipeToArchive.Archived = !recipeToArchive.Archived;
+    //     recipeToArchive.Archived = !recipeToArchive.Archived;
 
-        Recipe updatedRecipe = _repository.ArchiveRecipe(recipeToArchive);
+    //     Recipe updatedRecipe = _repository.ArchiveRecipe(recipeToArchive);
 
-        return updatedRecipe;
+    //     return updatedRecipe;
 
-    }
+    // }
 
     internal Recipe CreateRecipe(Recipe recipeData)
     {

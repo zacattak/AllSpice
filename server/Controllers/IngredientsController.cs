@@ -16,12 +16,12 @@ public class IngredientsController : ControllerBase
 
     [HttpPost]
     [Authorize]
-    public async Task<ActionResult<Ingredient>> CreateIngredient([FromBody] Ingredient ingredientData)
+    public ActionResult<Ingredient> CreateIngredient([FromBody] Ingredient ingredientData)
     {
         try
         {
-            Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
-            ingredientData.CreatorId = userInfo.Id;
+            // Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+            // ingredientData.CreatorId = userInfo.Id;
             Ingredient ingredient = _ingredientsService.CreateIngredient(ingredientData);
             return Ok(ingredient);
         }
@@ -31,7 +31,7 @@ public class IngredientsController : ControllerBase
         }
     }
 
-    [HttpDelete("{pictureId}")]
+    [HttpDelete("{ingredientId}")]
     [Authorize]
     public async Task<ActionResult<string>> DestroyIngredient(int ingredientId)
     {
