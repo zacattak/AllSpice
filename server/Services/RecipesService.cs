@@ -49,4 +49,15 @@ public class RecipesService
         List<Recipe> recipes = _repository.GetRecipes();
         return recipes;
     }
+
+    internal Recipe EditRecipe(Recipe updateData, int recipeId)
+    {
+        Recipe originalRecipe = GetRecipeById(recipeId);
+        originalRecipe.Title = updateData.Title?.Length > 0 ? updateData.Title : originalRecipe.Title;
+        originalRecipe.Instructions = updateData.Instructions?.Length > 0 ? updateData.Instructions : originalRecipe.Instructions;
+        originalRecipe.Img = updateData.Img?.Length > 0 ? updateData.Img : originalRecipe.Img;
+        originalRecipe.Category = updateData.Category?.Length > 0 ? updateData.Category : originalRecipe.Category;
+        Recipe newRecipe = _repository.EditRecipe(originalRecipe);
+        return newRecipe;
+    }
 }

@@ -72,6 +72,33 @@ public class RecipesRepository
     }, new { recipeId }).FirstOrDefault();
         return recipe;
     }
+
+    internal Recipe EditRecipe(Recipe updateData)
+    {
+        string sql = @"
+        UPDATE recipes SET
+        title = @title,
+        instructions = @instructions,
+        img = @img,
+        category = @category
+        WHERE id = @id;
+
+        SELECT
+        recipe.*,
+        account.*
+        FROM recipes recipe
+        JOIN accounts account ON recipe.creatorId = account.id
+        WHERE recipe.id = @id;";
+        Recipe recipe = _db.Query<Recipe, Account, Recipe>(sql, (recipe, account) =>
+        {
+            recipe.Creator = account;
+            return recipe;
+        }, updateData).FirstOrDefault();
+        return recipe;
+    }
+
+
+
     internal List<Recipe> GetRecipes()
     {
         string sql = @"

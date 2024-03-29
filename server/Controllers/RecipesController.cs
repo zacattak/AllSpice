@@ -64,6 +64,26 @@ public class RecipesController : ControllerBase
         }
     }
 
+    [HttpPut("{recipeId}")]
+    [Authorize]
+    public ActionResult<Recipe> EditRecipe([FromBody] Recipe updateData, int recipeId)
+    {
+        try
+        {
+            updateData.Id = recipeId;
+            Recipe newRecipe = _recipesService.EditRecipe(updateData, recipeId);
+            return Ok(newRecipe);
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+    }
+
+
+
+
     // [HttpDelete("{recipeId}")]
     // [Authorize]
     // public async Task<ActionResult<Recipe>> ArchiveRecipe(int recipeId)
