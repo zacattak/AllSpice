@@ -16,6 +16,8 @@ CREATE TABLE favorites (
 
 DROP TABLE recipes;
 
+SELECT * FROM favorites;
+
 SELECT recipe.*, account.*
 FROM
     recipes recipe

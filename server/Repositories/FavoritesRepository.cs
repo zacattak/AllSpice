@@ -15,11 +15,11 @@ public class FavoritesRepository
     favorites(accountId, recipeId)
     VALUES(@AccountId, @RecipeId);
     SELECT
-    favorites.*,
-    recipes.*
+    favorite.*,
+    recipe.*
     FROM favorites favorite
     JOIN recipes recipe ON favorite.recipeId = @recipeId
-    WHERE id = LAST_INSERT_ID();";
+    WHERE favorite.id = LAST_INSERT_ID();";
 
         Favorite favorite = _db.Query<Favorite, Recipe, Favorite>(sql, (favorite, recipe) =>
         {
