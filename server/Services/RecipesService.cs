@@ -28,6 +28,21 @@ public class RecipesService
 
     // }
 
+    internal string DestroyRecipe(int recipeId, string userId)
+    {
+        Recipe recipe = GetRecipeById(recipeId);
+        if (recipe.CreatorId == userId)
+        {
+            _repository.DestroyRecipe(recipeId);
+            return $"{recipe.Title} removed";
+        }
+        else
+        {
+            throw new Exception("You cannot destroy what you did not create!");
+        }
+    }
+
+
     internal Recipe CreateRecipe(Recipe recipeData)
     {
         Recipe recipe = _repository.CreateRecipe(recipeData);
