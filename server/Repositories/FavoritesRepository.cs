@@ -12,8 +12,8 @@ public class FavoritesRepository
     {
         string sql = @"
     INSERT INTO 
-    favorites(recipeId, accountId)
-    VALUES(@RecipeId, @AccountId);
+    favorites(accountId, recipeId)
+    VALUES(@AccountId, @RecipeId);
     SELECT
     favorites.*,
     recipes.*
