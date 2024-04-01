@@ -9,12 +9,15 @@ public class RecipesController : ControllerBase
     private readonly Auth0Provider _auth0Provider;
 
     private readonly IngredientsService _ingredientsService;
+
+    // private readonly FavoritesService _favoritesService;
     public RecipesController(RecipesService recipesService, Auth0Provider auth0Provider, IngredientsService ingredientsService)
 
     {
         _recipesService = recipesService;
         _auth0Provider = auth0Provider;
         _ingredientsService = ingredientsService;
+        // _favoritesService = favoritesService;
 
     }
 
