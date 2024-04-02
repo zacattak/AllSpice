@@ -14,4 +14,10 @@ public class FavoritesService
         Favorite favorite = _repository.CreateFavorite(favoriteData);
         return favorite;
     }
+
+    internal List<FavoriteRecipe> GetAccountFavorites(string userId)
+    {
+        List<FavoriteRecipe> favorites = _repository.GetAccountFavorites(userId);
+        return favorites;
+    }
 }

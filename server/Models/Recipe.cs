@@ -20,5 +20,8 @@ public class Recipe
 
     // public bool Archived { get; set; }
 
-
+}
+public class FavoriteRecipe : Recipe
+{
+    public int FavoriteId { get; set; }
 }
