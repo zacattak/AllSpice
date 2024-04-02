@@ -50,4 +50,12 @@ public class FavoritesRepository
         }, new { userId }).ToList();
         return favorite;
     }
+
+    internal void DeleteFavorite(string favoriteId)
+    {
+        string sql = @"
+        DELETE FROM favorites
+        WHERE id = @favoriteId;";
+        _db.Execute(sql, new { favoriteId });
+    }
 }
