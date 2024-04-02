@@ -18,7 +18,7 @@ public class FavoritesRepository
     favorite.*,
     recipe.*
     FROM favorites favorite
-    JOIN recipes recipe ON favorite.recipeId = @recipeId
+    JOIN recipes recipe ON favorite.recipeId = @RecipeId
     WHERE favorite.id = LAST_INSERT_ID();";
 
         Favorite favorite = _db.Query<Favorite, Recipe, Favorite>(sql, (favorite, recipe) =>
@@ -39,7 +39,7 @@ public class FavoritesRepository
 
      account.*
       FROM favorites favorite
-      JOIN recipes recipe ON favorite.recipeId = recipe.id
+      JOIN recipes recipe ON recipe.id = favorite.recipeId
       JOIN accounts account ON recipe.creatorId = account.id
       WHERE favorite.accountId = @userId;";
         List<FavoriteRecipe> favorite = _db.Query<FavoriteRecipe, Favorite, Account, FavoriteRecipe>(sql, (favoriteRecipe, favorite, account) =>

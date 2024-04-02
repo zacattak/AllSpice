@@ -36,7 +36,7 @@ public class FavoritesController : ControllerBase
         }
     }
 
-    [HttpDelete("{favoriteToXId}")]
+    [HttpDelete("{favoriteId}")]
     [Authorize]
     public async Task<ActionResult<string>> DeleteFavorite(string favoriteId)
     {
