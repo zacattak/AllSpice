@@ -5,12 +5,14 @@
 
 
 
-        <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+        <!-- <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+
           <div class="d-flex flex-column align-items-center">
-            <!-- <img alt="logo" src="../assets/img/cw-logo.png" height="45" /> -->
+            
             <h1>🏘️</h1>
           </div>
-        </router-link>
+
+        </router-link> -->
 
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -30,14 +32,18 @@
             </li>
           </div>
 
-          <h1 class="text-white magic-header">Recipe Reservoir</h1>
+          <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
+            <h1 class="text-white magic-header">Recipe Reservoir</h1>
+
+          </router-link>
+
           <!-- LOGIN COMPONENT HERE -->
           <div>
 
 
-            <button class="btn text-light" @click="toggleTheme">
+            <!-- <button class="btn text-light" @click="toggleTheme">
               <i class="mdi" :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i>
-            </button>
+            </button> -->
           </div>
           <Login />
         </div>
@@ -60,12 +66,12 @@ export default {
     })
 
     return {
-      theme,
-      toggleTheme() {
-        theme.value = theme.value == 'light' ? 'dark' : 'light'
-        document.documentElement.setAttribute('data-bs-theme', theme.value)
-        saveState('theme', theme.value)
-      }
+      // theme,
+      // toggleTheme() {
+      //   theme.value = theme.value == 'light' ? 'dark' : 'light'
+      //   document.documentElement.setAttribute('data-bs-theme', theme.value)
+      //   saveState('theme', theme.value)
+      // }
     }
   },
   components: { Login }
@@ -84,7 +90,8 @@ a:hover {
 .magic-header {
   position: absolute;
   right: 0px;
-  left: 350px;
+  bottom: 5px;
+  left: 320px;
 }
 
 .navbar-nav .router-link-exact-active {
