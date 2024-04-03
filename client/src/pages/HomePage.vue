@@ -3,6 +3,7 @@
     <section class="row">
       <div class="col-12">
         <div class="d-flex justify-content-center">
+          {{ recipes }}
 
         </div>
 
@@ -14,10 +15,24 @@
 </template>
 
 <script>
+import { computed, onMounted } from 'vue';
+import { recipesService } from '../services/RecipesService.js';
+import Pop from '../utils/Pop';
+import { AppState } from '../AppState';
 export default {
   setup() {
-    return {
+    async function getRecipes() {
+      try {
+        await recipesService.getRecipes()
+      }
+      catch (error) {
+        Pop.error(error);
+      }
+    }
 
+    onMounted(getRecipes)
+    return {
+      recipes: computed(() => AppState.recipes)
     }
   }
 }

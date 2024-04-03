@@ -1,6 +1,9 @@
 <template>
   <section class="container-fluid">
     <div class="row">
+
+
+
       <nav class="navbar navbar-expand-sm bg-dark px-3">
 
 
@@ -48,6 +51,8 @@
           <Login />
         </div>
       </nav>
+
+
     </div>
   </section>
 </template>
@@ -91,7 +96,7 @@ a:hover {
   position: absolute;
   right: 0px;
   bottom: 5px;
-  left: 320px;
+  left: 490px;
 }
 
 .navbar-nav .router-link-exact-active {
