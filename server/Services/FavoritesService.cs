@@ -9,10 +9,10 @@ public class FavoritesService
         _repository = repository;
     }
 
-    internal Favorite CreateFavorite(Favorite favoriteData)
+    internal FavoriteRecipe CreateFavorite(Favorite favoriteData)
     {
-        Favorite favorite = _repository.CreateFavorite(favoriteData);
-        return favorite;
+        FavoriteRecipe favoriteRecipe = _repository.CreateFavorite(favoriteData);
+        return favoriteRecipe;
     }
 
     internal List<FavoriteRecipe> GetAccountFavorites(string userId)
@@ -21,8 +21,24 @@ public class FavoritesService
         return favorites;
     }
 
-    internal string DeleteFavorite(string favoriteId)
+    internal Favorite FindFavoriteById(int favoriteId)
     {
+        Favorite favorite = _repository.FindFavoriteById(favoriteId);
+        if (favorite == null)
+        {
+            throw new Exception($"Invalid ID: {favoriteId}");
+        }
+        return favorite;
+    }
+
+
+    internal string DeleteFavorite(string userId, int favoriteId)
+    {
+        Favorite favorite = FindFavoriteById(favoriteId);
+        if (userId != favorite.AccountId)
+        {
+            throw new Exception("Not yours to delete!");
+        }
         _repository.DeleteFavorite(favoriteId);
         return "deleted from favorites";
     }

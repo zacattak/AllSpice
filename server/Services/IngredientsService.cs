@@ -15,9 +15,10 @@ public class IngredientsService
         return ingredient;
     }
 
-    internal string DestroyIngredient(int ingredientId, string id)
+    internal string DestroyIngredient(int ingredientId)
     {
-        throw new NotImplementedException();
+        _repository.DestroyIngredient(ingredientId);
+        return "Ingredient is no longer a part of the recipe!";
     }
 
     internal List<Ingredient> GetIngredientsByRecipeId(int recipeId)

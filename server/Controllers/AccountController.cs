@@ -38,8 +38,8 @@ public class AccountController : ControllerBase
     try
     {
       Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
-      string userId = userInfo.Id;
-      List<FavoriteRecipe> favorites = _favoritesService.GetAccountFavorites(userId);
+      // string userId = userInfo.Id;
+      List<FavoriteRecipe> favorites = _favoritesService.GetAccountFavorites(userInfo.Id);
       return Ok(favorites);
     }
     catch (Exception exception)

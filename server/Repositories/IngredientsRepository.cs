@@ -65,4 +65,10 @@ public class IngredientsRepository
         }, new { recipeId }).ToList();
         return ingredient;
     }
+
+    internal void DestroyIngredient(int ingredientId)
+    {
+        string sql = @"DELETE FROM ingredients WHERE id = @ingredientId;";
+        _db.Execute(sql, new { ingredientId });
+    }
 }

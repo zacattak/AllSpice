@@ -38,7 +38,7 @@ public class IngredientsController : ControllerBase
         try
         {
             Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
-            string message = _ingredientsService.DestroyIngredient(ingredientId, userInfo.Id);
+            string message = _ingredientsService.DestroyIngredient(ingredientId);
             return Ok(message);
         }
         catch (Exception exception)
