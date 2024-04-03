@@ -1,7 +1,7 @@
 <template>
   <section class="container-fluid">
     <div class="row">
-      <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-3">
+      <nav class="navbar navbar-expand-sm bg-dark px-3">
 
 
 
@@ -24,13 +24,13 @@
         <div class="collapse navbar-collapse" id="navbarText">
           <div class="navbar-nav me-auto">
             <li>
-              <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
+              <router-link :to="{ name: 'About' }" class="btn text-white lighten-30 selectable text-uppercase">
                 Favorite Recipes
               </router-link>
             </li>
           </div>
 
-          <h1 class="text-success magic-header">Recipe Reservoir</h1>
+          <h1 class="text-white magic-header">Recipe Reservoir</h1>
           <!-- LOGIN COMPONENT HERE -->
           <div>
 
@@ -88,7 +88,7 @@ a:hover {
 }
 
 .navbar-nav .router-link-exact-active {
-  border-bottom: 2px solid var(--bs-success);
+  border-bottom: 2px solid var(--bs-white);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
