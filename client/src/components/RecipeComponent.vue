@@ -1,6 +1,6 @@
 <template>
     <section class="row d-flex justify-content-center">
-        <div @click="setActiveRecipe()" class="btn selectable" type="button" data-bs-toggle="modal"
+        <div @click="setActiveRecipe()" class="selectable" type="button" data-bs-toggle="modal"
             data-bs-target="#recipeModal">
             <p class="mb-0 text-center">{{ recipe.category }}</p>
             <h2 class="text-center">{{ recipe.title }}</h2>
@@ -29,6 +29,7 @@ export default {
             setActiveRecipe() {
                 try {
                     recipesService.setActiveRecipe(props.recipe)
+                    ingredientsService.getRecipeIngredients(props.recipe.id)
                 } catch (error) {
                     Pop.error(error)
                 }

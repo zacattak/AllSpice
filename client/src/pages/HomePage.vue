@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid">
-    <section class="row d-flex justify-content-center">
+    <section class="row d-flex justify-content-evenly">
 
-      <div v-for="recipe in recipes" :key="recipe.id" class="col-9 col-md-7 card mb-2 mt-2">
+      <div v-for="recipe in recipes" :key="recipe.id" class="col-9 col-md-3 m-2 card mb-2 mt-2">
         <!-- <a @click="setActiveRecipe()" type="button" class="" data-bs-toggle="modal" data-bs-target="#recipeModal"> -->
         <!-- <p class="mb-0 text-center">{{ recipe.category }}</p>
         <h2 class="text-center">{{ recipe.title }}</h2>
@@ -13,7 +13,7 @@
       </div>
 
     </section>
-
+    <RecipeModal />
   </div>
 </template>
 
