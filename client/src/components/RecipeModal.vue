@@ -20,7 +20,8 @@
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal"></button> -->
-                    <button type="button" class="btn btn-primary">Favorite Recipe</button>
+                    <button v-if="!isFavorite && account.id" @click="createFavorite(activeRecipe.id)" type="button"
+                        class="btn btn-primary">Favorite Recipe</button>
                 </div>
             </div>
         </div>
@@ -38,6 +39,8 @@ export default {
     setup() {
         const activeRecipe = computed(() => AppState.activeRecipe)
         return {
+            account: computed(() => AppState.account),
+            isFavorite: computed(() => AppState.favorites.some(favorite => favorite.id == AppState.activeRecipe.iid)),
             recipeIngredients: computed(() => AppState.recipeIngredients),
             activeRecipe
         }
