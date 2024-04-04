@@ -9,6 +9,13 @@ class RecipesService {
         logger.log('GOT RECIPES', response.data)
         AppState.recipes = response.data.map(pojo => new Recipe(pojo))
     }
+
+    setActiveRecipe(recipe) {
+        AppState.activeRecipe = null
+        AppState.activeRecipe = recipe
+        logger.log(AppState.activeRecipe)
+
+    }
 }
 
 export const recipesService = new RecipesService()
