@@ -40,7 +40,7 @@ export default {
         const activeRecipe = computed(() => AppState.activeRecipe)
         return {
             account: computed(() => AppState.account),
-            isFavorite: computed(() => AppState.favorites.some(favorite => favorite.id == AppState.activeRecipe.iid)),
+            isFavorite: computed(() => AppState.favorites.some(favorite => favorite.id == AppState.activeRecipe.id)),
             recipeIngredients: computed(() => AppState.recipeIngredients),
             activeRecipe
         }

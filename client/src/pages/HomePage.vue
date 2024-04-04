@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid bg-info">
     <section class="row d-flex justify-content-evenly">
 
       <div v-for="recipe in recipes" :key="recipe.id" class="col-9 col-md-3 m-2 card mb-2 mt-2">
@@ -64,6 +64,7 @@ export default {
   border-radius: 16px;
   box-shadow: 3px 3px 10px rgba(42, 6, 134, 0.31);
 }
+
 
 
 // .home {
